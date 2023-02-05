@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <h1 class="py-5">Supprimer</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <p>Etes vous sûr de supprimer le projet ? {{ project.title }}</p>
+                    </div>
+                    <button type="button" class="btn btn-primary">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+<!--<div class="mb-3">-->
+<!--    <input type="text" class="form-control">-->
+<!--</div>-->
