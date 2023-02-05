@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="my-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-9">
-                <h1 class="py-5">Créer un project</h1>
-                <form method="POST">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        {{ form.as_p }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                </form>
-            </div>
+<!-- Main Section -->
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form class="form" method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+                <!-- Input:Text -->
+                {% for field in form %}
+                <div class="form__field">
+                    <label for="formInput#text">{{ field.label }}: </label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
         </div>
     </div>
-</section>
+</main>
 {% endblock %}
-
-
-<!--<div class="mb-3">-->
-<!--    <input type="text" class="form-control">-->
-<!--</div>-->
