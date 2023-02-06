@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Main Section -->
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form class="form" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <!-- Input:Text -->
+
+                <div class="form__field">
+                    <input type="text" name="username" class="form-control"  placeholder="name@example.com">
+                </div>
+                <div class="form__field">
+                    <input type="password" name="password" class="form-control" placeholder="Pass Word">
+                </div>
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

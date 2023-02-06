@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Project
 from .forms import ProjectForm
 from users.models import Profile
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -24,6 +25,7 @@ def project_detail(request, pk):
     return render(request, "projects/project_detail.html", context)
 
 
+@login_required(login_url='login')
 def project_create(request):
     form = ProjectForm()
     if request.method == "POST":
@@ -36,6 +38,7 @@ def project_create(request):
     return render(request, "projects/project_form.html", context)
 
 
+@login_required(login_url='login')
 def project_update(request, pk):
     project = Project.objects.get(id=pk)
     form = ProjectForm(instance=project)
@@ -49,6 +52,7 @@ def project_update(request, pk):
     return render(request, "projects/project_form.html", context)
 
 
+@login_required(login_url='login')
 def project_delete(request, pk):
     project = Project.objects.get(id=pk)
     if request.method == 'POST':
