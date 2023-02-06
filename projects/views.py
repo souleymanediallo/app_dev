@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Project
 from .forms import ProjectForm
+from users.models import Profile
 
 
 # Create your views here.
 def home(request):
-    return render(request, "projects/index.html")
+    profiles = Profile.objects.all()
+    context = {'profiles': profiles}
+    return render(request, "projects/index.html", context)
 
 
 def project_list(request):
