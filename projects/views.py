@@ -27,11 +27,14 @@ def project_detail(request, pk):
 
 @login_required(login_url='login')
 def project_create(request):
+    profile = request.user.profile
     form = ProjectForm()
     if request.method == "POST":
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            project = form.save(commit=False)
+            project.owner = profile
+            project.save()
             return redirect('project-list')
 
     context = {"form": form}
@@ -40,8 +43,10 @@ def project_create(request):
 
 @login_required(login_url='login')
 def project_update(request, pk):
-    project = Project.objects.get(id=pk)
+    profile = request.user.profile
+    project = profile.project_set.get(id=pk)
     form = ProjectForm(instance=project)
+
     if request.method == "POST":
         form = ProjectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
@@ -54,7 +59,8 @@ def project_update(request, pk):
 
 @login_required(login_url='login')
 def project_delete(request, pk):
-    project = Project.objects.get(id=pk)
+    profile = request.user.profile
+    project = profile.project_set.get(id=pk)
     if request.method == 'POST':
         project.delete()
         return redirect('project-list')

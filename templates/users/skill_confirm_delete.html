@@ -9,9 +9,9 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <p>Etes vous sûr de supprimer le projet ? {{ project.title }}</p>
+                        <p>Etes vous sûr de supprimer le projet ? {{ skill.title }}</p>
                     </div>
-                    <button type="button" class="btn btn-primary">Annuler</button>
+                    <button type="button" class="btn btn-primary"><a href="{% url 'account' %}">Annuler</a></button>
                     <button type="submit" class="btn btn-primary">Supprimer</button>
                 </form>
             </div>
