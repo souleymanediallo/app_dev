@@ -7,6 +7,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import CustomUserCreationForm, SkillForm
 from .forms import ProfileForm
+from django.db.models import Q
+
 
 
 # Create your views here.
@@ -106,6 +108,7 @@ def skill_create(request):
     context = {"form": form}
     return render(request, "users/skill_form.html", context)
 
+
 @ login_required(login_url='login')
 def skill_update(request, pk):
     profile = request.user.profile
@@ -120,6 +123,7 @@ def skill_update(request, pk):
 
     context = {"form": form}
     return render(request, "users/skill_form.html", context)
+
 
 @ login_required(login_url='login')
 def skill_delete(request, pk):
